@@ -17,7 +17,10 @@ export default {
       title: "Hello"
     };
   },
-  onLoad() {},
+  onLoad() {
+    const app = getApp();
+    console.log(app.globalData.popupZIndex);
+  },
   methods: {}
 };
 </script>

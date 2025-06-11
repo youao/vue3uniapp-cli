@@ -1,5 +1,8 @@
 <script>
 export default {
+  globalData: {
+    popupZIndex: 999
+  },
   onLaunch: function () {
     console.log("App Launch");
   },
