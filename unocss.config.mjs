@@ -1,7 +1,7 @@
 import presetWeapp from "unocss-preset-weapp";
 import {
   extractorAttributify,
-  transformerClass,
+  transformerClass
 } from "unocss-preset-weapp/transformer";
 
 const { presetWeappAttributify, transformerAttributify } =
@@ -10,18 +10,15 @@ const { presetWeappAttributify, transformerAttributify } =
 export default {
   presets: [
     presetWeapp({
-      whRpx: false,
+      whRpx: false
     }),
-    presetWeappAttributify(),
+    presetWeappAttributify()
   ],
   shortcuts: [
     {
       "border-base": "border border-gray-500_10",
-      "center": "flex justify-center items-center",
-    },
+      "center": "flex justify-center items-center"
+    }
   ],
-  transformers: [
-    transformerAttributify(),
-    transformerClass(),
-  ],
+  transformers: [transformerAttributify(), transformerClass()]
 };

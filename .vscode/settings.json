@@ -1,4 +1,4 @@
 {
-    "npm.packageManager": "pnpm",
-    "npm-scripts.showStartNotification": false
+  "npm.packageManager": "pnpm",
+  "npm-scripts.showStartNotification": false
 }
