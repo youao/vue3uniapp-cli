@@ -2,8 +2,8 @@
 
 ## unocss
 
-[unocss-preset-weapp](https://www.npmjs.com/package/unocss-preset-weapp)
-[unocss uniapp_vue3 examples](https://github.com/MellowCo/unocss-preset-weapp/tree/main/examples/uniapp_vue3)
+- [unocss-preset-weapp](https://www.npmjs.com/package/unocss-preset-weapp)
+- [unocss uniapp_vue3 examples](https://github.com/MellowCo/unocss-preset-weapp/tree/main/examples/uniapp_vue3)
 
 #### 小程序不生效问题
 
