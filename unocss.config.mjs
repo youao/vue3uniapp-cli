@@ -3,6 +3,7 @@ import {
   extractorAttributify,
   transformerClass
 } from "unocss-preset-weapp/transformer";
+import presetIcons from "@unocss/preset-icons";
 
 const { presetWeappAttributify, transformerAttributify } =
   extractorAttributify();
@@ -12,12 +13,12 @@ export default {
     presetWeapp({
       whRpx: false
     }),
-    presetWeappAttributify()
+    presetWeappAttributify(),
+    presetIcons()
   ],
   shortcuts: [
     {
-      "border-base": "border border-gray-500_10",
-      "center": "flex justify-center items-center"
+      "border-base": "border border-gray-500_10"
     }
   ],
   transformers: [transformerAttributify(), transformerClass()]
