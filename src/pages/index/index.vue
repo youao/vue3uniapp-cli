@@ -9,6 +9,8 @@
       <text class="text-red text-24 font-600">Hello</text>
       <text class="text-gray">word</text>
     </view>
+    <navigator url="/pages/demo/toast">toast</navigator>
+
   </view>
 </template>
 
@@ -22,6 +24,17 @@ export default {
   onLoad() {
     const app = getApp();
     console.log(app.globalData.popupZIndex);
+
+    // const res1 = uni.request({
+    //   url: "https://cnodejs.org/api/v1/topics"
+    // });
+    // const res2 = uni.request({
+    //   url: "https://cnodejs.org/api/v1/topics",
+    //   success: (res) => {
+    //     console.log(res);
+    //   }
+    // });
+    // console.log(res1, res2);
   },
   methods: {}
 };
