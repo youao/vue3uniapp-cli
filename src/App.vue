@@ -11,10 +11,16 @@ export default {
   },
   onHide: function () {
     console.log("App Hide");
+  },
+  methods: {
+    usePopupZIndex() {
+      return ++this.globalData.popupZIndex;
+    }
   }
 };
 </script>
 
 <style lang="scss">
 /*每个页面公共css */
+@use "./static/styles/ui.scss";
 </style>
