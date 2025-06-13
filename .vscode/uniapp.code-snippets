@@ -1,0 +1,23 @@
+{
+  "Print to vue3": {
+    "prefix": "vue",
+    "body": [
+      "<template>",
+      "<view>",
+      "$1",
+      "</view>",
+      "</template>",
+      "<script setup>",
+      "import { ref } from 'vue'",
+      "import { onLoad } from '@dcloudio/uni-app'",
+      "$2",
+      "</script>"
+    ],
+    "description": "vue setup"
+  },
+  "Print to tmp": {
+    "prefix": "tmp",
+    "body": ["<template>", "$1", "</template>"],
+    "description": "template"
+  }
+}
