@@ -2,11 +2,10 @@
   <view
     v-if="isBe"
     class="size-full fixed top-0 left-0"
-    :class="popClassName"
     :style="popStyle"
     @click="tapMask"
   >
-    <view class="absolute" :class="wrapClassName" @click.stop>
+    <view :class="wrapClassName" @click.stop>
       <slot></slot>
     </view>
   </view>
@@ -46,17 +45,12 @@ const isShow = ref(false);
 const position = computed(() => {
   return positionMap.includes(props.position) ? props.position : "center";
 });
-const popClassName = computed(() => {
-  return [
-    isShow.value ? "opacity-100" : "opacity-0",
-    { "pointer-events-none": props.noPointer }
-  ];
-});
 const zIndex = ref(app.globalData.popupZIndex);
 const popStyle = computed(() => {
   return {
     backgroundColor: props.mask ? `rgba(0,0,0,${props.mask / 100})` : "",
-    zIndex: zIndex.value
+    zIndex: zIndex.value,
+    pointerEvents: props.noPointer ? "none" : "auto"
   };
 });
 const wrapClassName = computed(() => {
@@ -75,10 +69,7 @@ watch(
       }, 50);
     } else {
       isShow.value = false;
-      setTimeout(() => {
-        isBe.value = false;
-        emits("hide");
-      }, 300);
+      setTimeout(destroy, 300);
     }
   }
 );
@@ -86,6 +77,11 @@ watch(
 function tapMask() {
   value.value = false;
 }
-</script>
 
-<style lang="scss"></style>
+function destroy() {
+  isBe.value = false;
+  emits("hide");
+}
+
+defineExpose({ destroy });
+</script>

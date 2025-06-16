@@ -1,40 +1,86 @@
 <template>
   <view
-    class="w-full h-full fixed top-0 left-0 z-999 flex flex-col text-sm pointer-events-none"
+    class="w-4/5 fixed top-10vh left-1/10 flex flex-col justify-start items-center pointer-events-none"
   >
-    <view class="flex-1 flex flex-col justify-center items-center">
-      <!-- <view
-        class="max-w-4/5 bg-dark-800 text-white break-all px-3 py-2 rounded"
-        >{{ message }}</view
-      > -->
-    </view>
-    <view class="flex-1 flex flex-col justify-center items-center">
-      <view
-        class="max-w-4/5 bg-dark-800 text-white break-all px-3 py-2 rounded"
-        >{{ message }}</view
-      >
-      <view
-        class="max-w-4/5 bg-dark-800 text-white break-all px-3 py-2 rounded"
-        >{{ message }}</view
-      >
-    </view>
-    <view class="flex-1 flex flex-col justify-center items-center">
-      <view
-        class="max-w-4/5 bg-dark-800 text-white break-all px-3 py-2 rounded"
-        >{{ message }}</view
-      >
+    <view
+      v-for="(item, key) in list"
+      :key="key"
+      class="overflow-hidden ui-transition-toast flex items-center"
+      :style="item.style"
+    >
+      <ToastBar
+        :toastId="key"
+        :message="item.message + ',' + key"
+        @load="onToastBarLoad"
+      ></ToastBar>
     </view>
   </view>
 </template>
 
 <script setup>
+import { ref } from "vue";
 import ToastBar from "./ToastBar.vue";
 
-const props = defineProps({
-  message: String,
-  position: {
-    type: String,
-    default: "bottom"
+const app = getApp();
+
+const list = ref({});
+
+const defaultOptions = {
+  duration: 2000
+};
+
+function openToast(message) {
+  if (!message) return;
+  let opts = {};
+  if (typeof message == "string") {
+    opts.message = message;
+  } else if (message instanceof Object) {
+    opts = message;
   }
-});
+  if (!opts.message) return;
+  const toastId = getToastId();
+  const options = {
+    ...defaultOptions,
+    ...opts,
+    style: getToastBarStyle(0)
+  };
+  list.value[toastId] = options;
+}
+
+function getToastBarStyle(h) {
+  return {
+    height: h + "px",
+    opacity: h > 0 ? 1 : 0,
+    zIndex: h > 0 ? app.usePopupZIndex() : 0
+  };
+}
+
+function onToastBarLoad(options) {
+  const { id, data } = options;
+  if (!id || !list.value[id] || !data || !data.height) return;
+  const item = list.value[id];
+  item.style = getToastBarStyle(data.height + 16);
+  if (item.duration > 0) {
+    setTimeout(() => {
+      setTimeout(() => closeToast(id), item.duration);
+    }, 300);
+  }
+}
+
+function getToastId() {
+  const t = new Date().getTime();
+  const random = Math.random().toString(16).substring(2);
+  return "_ui_toast_" + t + "_" + random;
+}
+
+function closeToast(key) {
+  if (key && key in list.value) {
+    list.value[key].h = 0;
+    setTimeout(() => {
+      delete list.value[key];
+    }, 300);
+  }
+}
+
+defineExpose({ openToast, closeToast });
 </script>
