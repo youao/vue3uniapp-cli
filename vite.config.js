@@ -5,6 +5,13 @@ export default defineConfig(async () => {
   const UnoCss = await import("unocss/vite").then((i) => i.default);
 
   return {
-    plugins: [uni(), UnoCss()]
+    plugins: [uni(), UnoCss()],
+    css: {
+      preprocessorOptions: {
+        scss: {
+          api: "modern-compiler" // or 'modern'
+        }
+      }
+    }
   };
 });
