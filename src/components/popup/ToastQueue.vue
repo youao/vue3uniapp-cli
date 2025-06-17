@@ -10,7 +10,7 @@
     >
       <ToastBar
         :toastId="key"
-        :message="item.message + ',' + key"
+        :message="item.message"
         @load="onToastBarLoad"
       ></ToastBar>
     </view>
@@ -75,7 +75,7 @@ function getToastId() {
 
 function closeToast(key) {
   if (key && key in list.value) {
-    list.value[key].h = 0;
+    list.value[key].style = getToastBarStyle(0);
     setTimeout(() => {
       delete list.value[key];
     }, 300);

@@ -30,6 +30,6 @@ onMounted(() => {
         emits("load", options);
       })
       .exec();
-  }, 100);
+  }, 50);
 });
 </script>
