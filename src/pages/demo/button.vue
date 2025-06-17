@@ -7,24 +7,49 @@
       <button class="ui-button" type="primary" plain>点击</button>
       <button class="ui-button" type="primary" plain loading>点击</button>
       <button class="ui-button" type="primary" plain disabled>点击</button>
+
+      <button class="ui-button" type="success">点击</button>
+      <button class="ui-button" type="success" loading>点击</button>
+      <button class="ui-button" type="success" disabled>点击</button>
+      <button class="ui-button" type="success" plain>点击</button>
+      <button class="ui-button" type="success" plain loading>点击</button>
+      <button class="ui-button" type="success" plain disabled>点击</button>
+
+      <button class="ui-button" type="warn">点击</button>
+      <button class="ui-button" type="warn" loading>点击</button>
+      <button class="ui-button" type="warn" disabled>点击</button>
+      <button class="ui-button" type="warn" plain>点击</button>
+      <button class="ui-button" type="warn" plain loading>点击</button>
+      <button class="ui-button" type="warn" plain disabled>点击</button>
+
+      <button class="ui-button" type="warning">点击</button>
+      <button class="ui-button" type="warning" loading>点击</button>
+      <button class="ui-button" type="warning" disabled>点击</button>
+      <button class="ui-button" type="warning" plain>点击</button>
+      <button class="ui-button" type="warning" plain loading>点击</button>
+      <button class="ui-button" type="warning" plain disabled>点击</button>
+
+      <button class="ui-button" type="danger">点击</button>
+      <button class="ui-button" type="danger" loading>点击</button>
+      <button class="ui-button" type="danger" disabled>点击</button>
+      <button class="ui-button" type="danger" plain>点击</button>
+      <button class="ui-button" type="danger" plain loading>点击</button>
+      <button class="ui-button" type="danger" plain disabled>点击</button>
+
+      <button class="ui-button">点击</button>
+      <button class="ui-button" loading>点击</button>
+      <button class="ui-button" disabled>点击</button>
+      <button class="ui-button" plain>点击</button>
+      <button class="ui-button" plain loading>点击</button>
+      <button class="ui-button" plain disabled>点击</button>
     </view>
   </ui-page>
 </template>
 
-<script setup>
-import { ref } from "vue";
-import { onLoad } from "@dcloudio/uni-app";
-
-onLoad((options) => {
-  console.log(options);
-});
-</script>
+<script setup></script>
 
 <style lang="scss" scoped>
 button {
   margin-bottom: 20rpx;
-}
-.ui-button[type="primary"] {
-  background-color: $uni-color-primary;
 }
 </style>

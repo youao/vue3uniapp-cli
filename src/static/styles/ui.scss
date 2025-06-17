@@ -26,8 +26,10 @@
     right: 0;
     left: 0;
     margin: auto;
-    transition: opacity 0.3s, #{$dir} 0.3s;
-    will-change: opacity, #{$dir};
+    transition: opacity 0.3s,
+    #{$dir} 0.3s;
+    will-change: opacity,
+    #{$dir};
 
     &.on {
       opacity: 1;
@@ -39,4 +41,42 @@
 .ui-transition-toast {
   transition: height 0.3s, opacity 0.3s;
   will-change: height, opacity;
+}
+
+/**
+ * button 样式覆盖
+ **/
+$buttonColors: (
+  primary:'primary',
+  success:'success',
+  warning:'warning',
+  warn:'warning',
+  danger:'danger'
+);
+
+@each $key, $value in $buttonColors {
+  .ui-button {
+    &[type="#{$key}"] {
+      color: #fff;
+      background-color: var(--ui-#{$value});
+
+      &[disabled],
+      &[loading] {
+        background-color: var(--ui-#{$value}-light-5);
+      }
+    }
+
+    &[type="#{$key}"][plain] {
+      color: var(--ui-#{$value});
+      border: 1px solid var(--ui-#{$value}-light-5);
+      background-color: var(--ui-#{$value}-light-9);
+
+      &[disabled],
+      &[loading] {
+        color: var(--ui-#{$value}-light-5);
+        border: 1px solid var(--ui-#{$value}-light-8);
+        background-color: var(--ui-#{$value}-light-9);
+      }
+    }
+  }
 }

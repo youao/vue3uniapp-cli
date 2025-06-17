@@ -2,9 +2,9 @@
 
 /* 行为相关颜色 */
 $uni-color-primary: var(--ui-primary, #007aff);
-$uni-color-success: var(--ui-primary, #4cd964);
-$uni-color-warning: var(--ui-primary, #f0ad4e);
-$uni-color-error: var(--ui-primary, #dd524d);
+$uni-color-success: var(--ui-success, #4cd964);
+$uni-color-warning: var(--ui-warning, #f0ad4e);
+$uni-color-error: var(--ui-danger, #dd524d);
 
 /* 文字基本颜色 */
 $uni-text-color: #333; // 基本色
