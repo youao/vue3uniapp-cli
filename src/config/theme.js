@@ -8,7 +8,7 @@ export const uiColors = {
   info: "#909399"
 };
 
-const colorChildren = [
+export const colorChildren = [
   {
     type: "dark",
     ratio: 2

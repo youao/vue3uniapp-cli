@@ -1,28 +1,32 @@
 <template>
   <ui-page ref="page">
-    <view class="p-3">
-      <view
-        v-for="item in colorList"
-        class="h-20"
-        :style="'background-color:' + item"
-      ></view>
+    <view class="p-3 text-white mb-5">
+      <view v-for="(item, key) in uiColors" :key="key">
+        <view
+          class="h-20 mt-6"
+          :style="'background-color: var(--ui-' + key + ')'"
+          >{{ key }}:{{ item }}</view
+        >
+        <view
+          v-for="(child, index) in colorChildren"
+          :key="index"
+          class="h-10 mt-2"
+          :style="
+            'background-color: var(--ui-' +
+            key +
+            '-' +
+            child.type +
+            '-' +
+            child.ratio +
+            ')'
+          "
+        >
+        </view>
+      </view>
     </view>
   </ui-page>
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { colorMix } from "@/utils/color.js";
-
-const page = ref(null);
-
-const color = "#007aff";
-const colorList = [];
-for (let i = 9; i > 0; i--) {
-  colorList.push(colorMix(color, "#000", i / 10));
-}
-colorList.push(color);
-for (let i = 1; i < 10; i++) {
-  colorList.push(colorMix(color, "#fff", i / 10));
-}
+import { uiColors, colorChildren } from "@/config/theme.js";
 </script>
