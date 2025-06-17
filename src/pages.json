@@ -11,6 +11,12 @@
       "style": {
         "navigationBarTitleText": "toast"
       }
+    },
+    {
+      "path": "pages/demo/color",
+      "style": {
+        "navigationBarTitleText": "color"
+      }
     }
   ],
   "globalStyle": {
