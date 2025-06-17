@@ -1,5 +1,5 @@
 <template>
-  <view>
+  <view class="ui-page">
     <slot></slot>
 
     <!-- toast -->
@@ -8,7 +8,7 @@
 </template>
 <script setup>
 import { ref } from "vue";
-import { onLoad } from "@dcloudio/uni-app";
+// import { onLoad } from "@dcloudio/uni-app";
 import ToastQueue from "../popup/ToastQueue.vue";
 
 const toastQueue = ref(null);

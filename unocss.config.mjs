@@ -1,25 +1,35 @@
 import presetWeapp from "unocss-preset-weapp";
-import {
-  extractorAttributify,
-  transformerClass
-} from "unocss-preset-weapp/transformer";
+import { transformerClass } from "unocss-preset-weapp/transformer";
 import presetIcons from "@unocss/preset-icons";
+import { getUnocssThemeColors, getThemeCssVarText } from "./src/config/theme";
 
-const { presetWeappAttributify, transformerAttributify } =
-  extractorAttributify();
+const platform = process.env.UNI_PLATFORM;
+console.log(platform);
+const colors = getUnocssThemeColors();
 
 export default {
   presets: [
     presetWeapp({
       whRpx: false
     }),
-    presetWeappAttributify(),
     presetIcons()
+  ],
+  theme: {
+    colors
+  },
+  preflights: [
+    {
+      getCSS: () => {
+        const root = platform === 'mp-weixin' ? 'page' : ':root'
+        const cssVarText = getThemeCssVarText(colors, '--ui')
+        return `${root} {${cssVarText}}`
+      }
+    }
   ],
   shortcuts: [
     {
       "border-base": "border border-gray-500_10"
     }
   ],
-  transformers: [transformerAttributify(), transformerClass()]
+  transformers: [transformerClass()]
 };
