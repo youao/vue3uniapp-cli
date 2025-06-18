@@ -11,6 +11,7 @@
       <ToastBar
         :toastId="key"
         :message="item.message"
+        :type="item.type"
         @load="onToastBarLoad"
       ></ToastBar>
     </view>

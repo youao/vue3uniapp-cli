@@ -35,6 +35,11 @@ export const colorChildren = [
   }
 ];
 
+export const colorChildrenMap = {
+  dark: [2],
+  light: [3, 5, 7, 8, 9]
+};
+
 export function getUnocssThemeColors() {
   const colors = {};
   for (let name in uiColors) {
@@ -42,14 +47,15 @@ export function getUnocssThemeColors() {
     colors[name] = {
       DEFAULT: color
     };
-    colorChildren.forEach((item) => {
-      const mixTarget = item.type === "dark" ? "#000" : "#fff";
-      colors[name][`${item.type}-${item.ratio}`] = colorMix(
-        color,
-        mixTarget,
-        item.ratio / 10
-      );
-    });
+    for (let k in colorChildrenMap) {
+      const childs = colorChildrenMap[k];
+      colors[name][k] = {};
+      const mixTarget = k === "dark" ? "#000" : "#fff";
+      for (let i = 0; i < childs.length; i++) {
+        const child = childs[i];
+        colors[name][k][child] = colorMix(color, mixTarget, child / 10);
+      }
+    }
   }
   return colors;
 }

@@ -1,20 +1,34 @@
 <template>
   <view
-    class="bg-dark-800 text-white break-all px-3 py-2 rounded pointer-events-auto toast-bar"
+    class="break-all px-3 py-2 rounded pointer-events-auto toast-bar"
+    :class="barClass"
     >{{ message }}</view
   >
 </template>
 
 <script setup>
-import { onMounted, getCurrentInstance } from "vue";
+import { onMounted, getCurrentInstance, computed } from "vue";
 
 const props = defineProps({
   toastId: String,
-  message: String
+  message: String,
+  type: String
 });
 
 const emits = defineEmits(["load"]);
 const instance = getCurrentInstance();
+
+const typeClassMap = {
+  dark: "bg-dark-800 text-white",
+  light: "bg-white text-dark border-1 border-info-light-7",
+  primary: "bg-primary-light-9 text-primary border-1 border-primary-light-5",
+  warning: "bg-warning-light-9 text-warning border-1 border-warning-light-5",
+  danger: "bg-danger-light-9 text-danger border-1 border-danger-light-5"
+};
+
+const barClass = computed(() => {
+  return typeClassMap[props.type] || typeClassMap.dark;
+});
 
 onMounted(() => {
   setTimeout(() => {

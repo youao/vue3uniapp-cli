@@ -22,5 +22,6 @@ export default {
 
 <style lang="scss">
 /*每个页面公共css */
+@use "./static/styles/base.scss";
 @use "./static/styles/ui.scss";
 </style>
