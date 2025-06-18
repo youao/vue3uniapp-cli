@@ -62,16 +62,17 @@ text {
  **/
 .ui-button {
   --ui-button-border-color: var(--ui-border-color);
+  --ui-button-border-radius: 0px;
   padding-top: 14px;
   padding-bottom: 14px;
   line-height: 1;
-  border-radius: 6px;
+  border-radius: var(--ui-button-border-radius);
 
   &::after {
     border-width: 0px;
     border-style: solid;
     border-color: var(--ui-button-border-color);
-    border-radius: 12px;
+    border-radius: calc(var(--ui-button-border-radius) * 2);
   }
 
   &[plain] {
@@ -81,16 +82,23 @@ text {
       border-width: 2px!important;
     }
   }
+
+  &[rounded] {
+    --ui-button-border-radius: 6px;
+  }
+  &[circle] {
+    --ui-button-border-radius: 32px;
+  }
 }
 
 .ui-button[type="default"],
 .ui-button:not([type]) {
   color: var(--ui-text-color);
-  background-color: var(--ui-fill-color);
+  background-color: var(--ui-fill-light);
 
   &.button-hover {
     color: var(--ui-text-color);
-    background-color: var(--ui-fill-darker);
+    background-color: var(--ui-fill-dark);
   }
 
   &[disabled],

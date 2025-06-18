@@ -1,7 +1,13 @@
 <template>
   <ui-page>
     <view class="p-6">
+      <button class="ui-button" type="primary" size="mini">点击</button>
+      <button class="ui-button" type="primary" size="mini" plain>点击</button>
+      <button class="ui-button" type="primary" size="mini" rounded loading>点击</button>
+      <button class="ui-button" type="primary" size="mini" plain circle disabled>点击</button>
       <button class="ui-button" type="primary">点击</button>
+      <button class="ui-button" type="primary" rounded>点击</button>
+      <button class="ui-button" type="primary" circle>点击</button>
       <button class="ui-button" type="primary" loading>点击</button>
       <button class="ui-button" type="primary" disabled>点击</button>
       <button class="ui-button" type="primary" plain>点击</button>
@@ -14,13 +20,6 @@
       <button class="ui-button" type="success" plain>点击</button>
       <button class="ui-button" type="success" plain loading>点击</button>
       <button class="ui-button" type="success" plain disabled>点击</button>
-
-      <button class="ui-button" type="warn">点击</button>
-      <button class="ui-button" type="warn" loading>点击</button>
-      <button class="ui-button" type="warn" disabled>点击</button>
-      <button class="ui-button" type="warn" plain>点击</button>
-      <button class="ui-button" type="warn" plain loading>点击</button>
-      <button class="ui-button" type="warn" plain disabled>点击</button>
 
       <button class="ui-button" type="warning">点击</button>
       <button class="ui-button" type="warning" loading>点击</button>
