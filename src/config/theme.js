@@ -76,3 +76,102 @@ export function getThemeCssVarText(theme, base) {
   }
   return text;
 }
+
+const uiNormalColors = [
+  {
+    name: "text",
+    cssKey: "color",
+    data: {
+      color: "#303133",
+      regular: "#606266",
+      secondary: "#909399",
+      placeholder: "#a8abb2",
+      disabled: "#c0c4cc"
+    }
+  },
+  {
+    name: "border",
+    cssKey: "border-color",
+    data: {
+      color: "#dcdfe6",
+      light: "#e4e7ed",
+      lighter: "#ebeef5",
+      extralight: "#f2f6fc",
+      dark: "#d4d7de",
+      darker: "#cdd0d6"
+    }
+  },
+  {
+    name: "bg",
+    cssKey: "background-color",
+    data: {
+      color: "#ffffff",
+      page: "#f2f3f5",
+      overlay: "#ffffff"
+    }
+  },
+  {
+    name: "fill",
+    cssKey: "background-color",
+    data: {
+      color: "#f0f2f5",
+      light: "#f5f7fa",
+      lighter: "#fafafa",
+      dark: "#ebedf0",
+      darker: "#e6e8eb"
+    }
+  },
+  {
+    name: "overlay",
+    cssKey: "background-color",
+    data: {
+      color: "rgba(0, 0, 0, .8)",
+      light: "rgba(0, 0, 0, .7)",
+      lighter: "rgba(0, 0, 0, .5)"
+    }
+  },
+  {
+    name: "mask",
+    cssKey: "background-color",
+    data: {
+      color: "rgba(255, 255, 255, .9)",
+      light: "rgba(255, 255, 255, .3)"
+    }
+  },
+  {
+    name: "shadow",
+    cssKey: "box-shadow",
+    data: {
+      color:
+        "0px 12px 32px 4px rgba(0, 0, 0, .04), 0px 8px 20px rgba(0, 0, 0, .08)",
+      light: "0px 0px 12px rgba(0, 0, 0, .12)",
+      lighter: "0px 0px 6px rgba(0, 0, 0, .12)",
+      dark: "0px 16px 48px 16px rgba(0, 0, 0, .08), 0px 12px 32px rgba(0, 0, 0, .12), 0px 8px 16px -8px rgba(0, 0, 0, .16)"
+    }
+  }
+];
+
+export function getNormalColorsData() {
+  const obj = {};
+  for (let i = 0; i < uiNormalColors.length; i++) {
+    const { name, data } = uiNormalColors[i];
+    obj[name] = data;
+  }
+  return obj;
+}
+
+export function getNormalColorsUnocssRules() {
+  const rules = [];
+  for (let i = 0; i < uiNormalColors.length; i++) {
+    const { name, cssKey, data } = uiNormalColors[i];
+    for (const key in data) {
+      rules.push([
+        `${name}-${key}`,
+        {
+          [cssKey]: data[key]
+        }
+      ]);
+    }
+  }
+  return rules;
+}
