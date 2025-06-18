@@ -14,7 +14,7 @@ import ToastQueue from "../popup/ToastQueue.vue";
 const toastQueue = ref(null);
 
 function toast(message) {
-  toastQueue.value?.openToast(message);
+  return toastQueue.value?.openToast(message);
 }
 
 defineExpose({ toast });

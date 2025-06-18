@@ -12,6 +12,7 @@
         :toastId="key"
         :message="item.message"
         :type="item.type"
+        :icon="item.icon"
         @load="onToastBarLoad"
       ></ToastBar>
     </view>
@@ -46,6 +47,7 @@ function openToast(message) {
     style: getToastBarStyle(0)
   };
   list.value[toastId] = options;
+  return () => closeToast(toastId);
 }
 
 function getToastBarStyle(h) {

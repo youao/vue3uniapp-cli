@@ -4,7 +4,6 @@ import presetIcons from "@unocss/preset-icons";
 import { getUnocssThemeColors, getThemeCssVarText } from "./src/config/theme";
 
 const platform = process.env.UNI_PLATFORM;
-console.log(platform);
 const colors = getUnocssThemeColors();
 
 export default {
