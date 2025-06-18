@@ -1,3 +1,17 @@
+view,
+text,
+image,
+button,
+input,
+textarea,
+navigator {
+  border: 0 solid transparent;
+}
+
+text {
+  display: inline-block;
+}
+
 .ui-transition-height {
   transition: height 0.3s;
   will-change: height;
@@ -46,6 +60,63 @@
 /**
  * button 样式覆盖
  **/
+.ui-button {
+  --ui-button-border-color: var(--ui-border-color);
+  padding-top: 14px;
+  padding-bottom: 14px;
+  line-height: 1;
+  border-radius: 6px;
+
+  &::after {
+    border-width: 0px;
+    border-style: solid;
+    border-color: var(--ui-button-border-color);
+    border-radius: 12px;
+  }
+
+  &[plain] {
+    border: none!important;
+  
+    &::after {
+      border-width: 2px!important;
+    }
+  }
+}
+
+.ui-button[type="default"],
+.ui-button:not([type]) {
+  color: var(--ui-text-color);
+  background-color: var(--ui-fill-color);
+
+  &.button-hover {
+    color: var(--ui-text-color);
+    background-color: var(--ui-fill-darker);
+  }
+
+  &[disabled],
+  &[loading] {
+    color: var(--ui-text-disabled);
+    background-color: var(--ui-fill-light);
+  }
+}
+
+.ui-button[plain][type="default"],
+.ui-button[plain]:not([type]) {
+  color: var(--ui-text-color);
+  background-color: var(--ui-bg-color);
+
+  &.button-hover {
+    color: var(--ui-text-color);
+    background-color: var(--ui-fill-dark);
+  }
+
+  &[disabled],
+  &[loading] {
+    color: var(--ui-text-disabled);
+    background-color: var(--ui-bg-color);
+  }
+}
+
 $buttonColors: (
   primary:'primary',
   success:'success',
@@ -60,6 +131,11 @@ $buttonColors: (
       color: #fff;
       background-color: var(--ui-#{$value});
 
+      &.button-hover {
+        color: rgba(#fff, 0.8);
+        background-color: var(--ui-#{$value}-dark-2);
+      }
+
       &[disabled],
       &[loading] {
         background-color: var(--ui-#{$value}-light-5);
@@ -67,14 +143,18 @@ $buttonColors: (
     }
 
     &[type="#{$key}"][plain] {
+      --ui-button-border-color: var(--ui-#{$value}-light-5);
       color: var(--ui-#{$value});
-      border: 1px solid var(--ui-#{$value}-light-5);
       background-color: var(--ui-#{$value}-light-9);
+
+      &.button-hover {
+        background-color: var(--ui-#{$value}-light-8);
+      }
 
       &[disabled],
       &[loading] {
+        --ui-button-border-color: var(--ui-#{$value}-light-7);
         color: var(--ui-#{$value}-light-5);
-        border: 1px solid var(--ui-#{$value}-light-8);
         background-color: var(--ui-#{$value}-light-9);
       }
     }
@@ -87,13 +167,16 @@ $buttonColors: (
 .ui-rotate {
   animation: uiRotate 1s linear infinite;
 }
+
 @keyframes uiRotate {
   0% {
     transform: rotate(0);
   }
+
   50% {
     transform: rotate(180deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
