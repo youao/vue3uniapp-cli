@@ -48,7 +48,10 @@ function toastLoading() {
     message: "toastLoading",
     type: "primary",
     duration: 0,
-    icon: "loading"
+    icon: "loading",
+    onClose() {
+      console.log("toastLoading onClose")
+    }
   });
 }
 

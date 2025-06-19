@@ -78,8 +78,10 @@ function getToastId() {
 
 function closeToast(key) {
   if (key && key in list.value) {
-    list.value[key].style = getToastBarStyle(0);
+    const item = list.value[key];
+    item.style = getToastBarStyle(0);
     setTimeout(() => {
+      typeof item.onClose === "function" && item.onClose();
       delete list.value[key];
     }, 300);
   }
