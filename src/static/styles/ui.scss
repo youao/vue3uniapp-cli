@@ -12,6 +12,25 @@ text {
   display: inline-block;
 }
 
+.uni-hover {
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  &.light::before {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+}
+
 .ui-transition-height {
   transition: height 0.3s;
   will-change: height;
@@ -61,43 +80,44 @@ text {
  * button 样式覆盖
  **/
 .ui-button {
-  --ui-button-border-color: var(--ui-border-color);
-  --ui-button-border-radius: 0px;
-  padding-top: 14px;
-  padding-bottom: 14px;
+  --ui-button-height: 44px;
+  --ui-button-border-radius: var(--ui-rounded);
+  font-size: 16px;
+  height: var(--ui-button-height);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   line-height: 1;
   border-radius: var(--ui-button-border-radius);
+  box-sizing: border-box;
 
-  &::after {
-    border-width: 0px;
-    border-style: solid;
-    border-color: var(--ui-button-border-color);
+  &:after {
+    border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: calc(var(--ui-button-border-radius) * 2);
   }
 
-  &[plain] {
-    border: none!important;
-  
-    &::after {
-      border-width: 2px!important;
-    }
+  &[loading]::before {
+    width: 1em;
+    height: 1em;
+    margin-right: 0.25em;
   }
 
-  &[rounded] {
-    --ui-button-border-radius: 6px;
+  &[plain] {
+    border-color: var(--ui-border-base);
   }
-  &[circle] {
-    --ui-button-border-radius: 32px;
+
+  &.circle {
+    --ui-button-border-radius: calc(var(--ui-button-height) / 2);
   }
 }
 
 .ui-button[type="default"],
 .ui-button:not([type]) {
-  color: var(--ui-text-color);
+  color: var(--ui-text-base);
   background-color: var(--ui-fill-light);
 
   &.button-hover {
-    color: var(--ui-text-color);
+    color: var(--ui-text-base);
     background-color: var(--ui-fill-dark);
   }
 
@@ -110,19 +130,27 @@ text {
 
 .ui-button[plain][type="default"],
 .ui-button[plain]:not([type]) {
-  color: var(--ui-text-color);
-  background-color: var(--ui-bg-color);
+  color: var(--ui-text-base);
+  background-color: var(--ui-bg-base);
 
   &.button-hover {
-    color: var(--ui-text-color);
+    color: var(--ui-text-base);
     background-color: var(--ui-fill-dark);
   }
 
   &[disabled],
   &[loading] {
     color: var(--ui-text-disabled);
-    background-color: var(--ui-bg-color);
+    background-color: var(--ui-bg-base);
   }
+}
+
+.ui-button[size="mini"] {
+  display: inline-flex;
+  --ui-button-height: 28px;
+  font-size: 12px;
+  line-height: 1;
+  padding: 0 1.2em;
 }
 
 $buttonColors: (
@@ -146,12 +174,13 @@ $buttonColors: (
 
       &[disabled],
       &[loading] {
+        color: rgba(#fff, 0.8);
         background-color: var(--ui-#{$value}-light-5);
       }
     }
 
     &[type="#{$key}"][plain] {
-      --ui-button-border-color: var(--ui-#{$value}-light-5);
+      border-color: var(--ui-#{$value}-light-5);
       color: var(--ui-#{$value});
       background-color: var(--ui-#{$value}-light-9);
 
@@ -161,7 +190,7 @@ $buttonColors: (
 
       &[disabled],
       &[loading] {
-        --ui-button-border-color: var(--ui-#{$value}-light-7);
+        border-color: var(--ui-#{$value}-light-7);
         color: var(--ui-#{$value}-light-5);
         background-color: var(--ui-#{$value}-light-9);
       }

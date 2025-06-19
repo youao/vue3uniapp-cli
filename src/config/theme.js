@@ -82,7 +82,7 @@ const uiNormalColors = [
     name: "text",
     cssKey: "color",
     data: {
-      color: "#303133",
+      base: "#303133",
       regular: "#606266",
       secondary: "#909399",
       placeholder: "#a8abb2",
@@ -90,10 +90,17 @@ const uiNormalColors = [
     }
   },
   {
+    name: "text",
+    cssKey: "font-size",
+    data: {
+      md: "16px"
+    }
+  },
+  {
     name: "border",
     cssKey: "border-color",
     data: {
-      color: "#dcdfe6",
+      base: "#dcdfe6",
       light: "#e4e7ed",
       lighter: "#ebeef5",
       extralight: "#f2f6fc",
@@ -102,10 +109,17 @@ const uiNormalColors = [
     }
   },
   {
+    name: "rounded",
+    cssKey: "border-radius",
+    data: {
+      DEFAULT: "6px"
+    }
+  },
+  {
     name: "bg",
     cssKey: "background-color",
     data: {
-      color: "#ffffff",
+      base: "#ffffff",
       page: "#f2f3f5",
       overlay: "#ffffff"
     }
@@ -114,7 +128,7 @@ const uiNormalColors = [
     name: "fill",
     cssKey: "background-color",
     data: {
-      color: "#f0f2f5",
+      base: "#f0f2f5",
       light: "#f5f7fa",
       lighter: "#fafafa",
       dark: "#ebedf0",
@@ -125,7 +139,7 @@ const uiNormalColors = [
     name: "overlay",
     cssKey: "background-color",
     data: {
-      color: "rgba(0, 0, 0, .8)",
+      base: "rgba(0, 0, 0, .8)",
       light: "rgba(0, 0, 0, .7)",
       lighter: "rgba(0, 0, 0, .5)"
     }
@@ -134,7 +148,7 @@ const uiNormalColors = [
     name: "mask",
     cssKey: "background-color",
     data: {
-      color: "rgba(255, 255, 255, .9)",
+      base: "rgba(255, 255, 255, .9)",
       light: "rgba(255, 255, 255, .3)"
     }
   },
@@ -142,8 +156,7 @@ const uiNormalColors = [
     name: "shadow",
     cssKey: "box-shadow",
     data: {
-      color:
-        "0px 12px 32px 4px rgba(0, 0, 0, .04), 0px 8px 20px rgba(0, 0, 0, .08)",
+      base: "0px 12px 32px 4px rgba(0, 0, 0, .04), 0px 8px 20px rgba(0, 0, 0, .08)",
       light: "0px 0px 12px rgba(0, 0, 0, .12)",
       lighter: "0px 0px 6px rgba(0, 0, 0, .12)",
       dark: "0px 16px 48px 16px rgba(0, 0, 0, .08), 0px 12px 32px rgba(0, 0, 0, .12), 0px 8px 16px -8px rgba(0, 0, 0, .16)"
@@ -155,7 +168,13 @@ export function getNormalColorsData() {
   const obj = {};
   for (let i = 0; i < uiNormalColors.length; i++) {
     const { name, data } = uiNormalColors[i];
-    obj[name] = data;
+    if (!obj[name]) {
+      obj[name] = data;
+    } else {
+      for (const key in data) {
+        obj[name][key] = data[key];
+      }
+    }
   }
   return obj;
 }
@@ -166,7 +185,7 @@ export function getNormalColorsUnocssRules() {
     const { name, cssKey, data } = uiNormalColors[i];
     for (const key in data) {
       rules.push([
-        `${name}-${key}`,
+        key === "DEFAULT" ? name : `${name}-${key}`,
         {
           [cssKey]: data[key]
         }

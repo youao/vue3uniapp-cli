@@ -32,7 +32,10 @@ export default {
       }
     }
   ],
-  rules: [...getNormalColorsUnocssRules()],
+  rules: [
+    ...getNormalColorsUnocssRules(),
+    ["rounded", { "border-radius": "6px" }]
+  ],
   shortcuts: [
     {
       "border-base": "border border-gray-500_10"

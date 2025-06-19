@@ -3,11 +3,11 @@
     <view class="p-6">
       <button class="ui-button" type="primary" size="mini">点击</button>
       <button class="ui-button" type="primary" size="mini" plain>点击</button>
-      <button class="ui-button" type="primary" size="mini" rounded loading>点击</button>
-      <button class="ui-button" type="primary" size="mini" plain circle disabled>点击</button>
+      <button class="ui-button rounded" type="primary" size="mini" loading>点击</button>
+      <button class="ui-button circle" type="primary" size="mini" plain disabled>点击</button>
       <button class="ui-button" type="primary">点击</button>
-      <button class="ui-button" type="primary" rounded>点击</button>
-      <button class="ui-button" type="primary" circle>点击</button>
+      <button class="ui-button rounded" type="primary">点击</button>
+      <button class="ui-button circle" type="primary">点击</button>
       <button class="ui-button" type="primary" loading>点击</button>
       <button class="ui-button" type="primary" disabled>点击</button>
       <button class="ui-button" type="primary" plain>点击</button>
