@@ -8,6 +8,9 @@
   ></text>
   <text v-else-if="name == 'info'" class="i-weui:info-filled"></text>
   <text v-else-if="name == 'loading'" class="i-ep:loading ui-rotate"></text>
+  <text v-else-if="name == 'close'" class="i-ep:close"></text>
+  <text v-else-if="name == 'left'" class="i-ep:arrow-left"></text>
+  <text v-else-if="name == 'right'" class="i-ep:arrow-right"></text>
 </template>
 
 <script setup>
