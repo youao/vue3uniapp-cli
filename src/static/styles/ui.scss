@@ -12,6 +12,11 @@ text {
   display: inline-block;
 }
 
+.ui-page {
+  font-size: 14px;
+  color: var(--ui-text-base);
+}
+
 .uni-hover {
   position: relative;
 
@@ -36,6 +41,11 @@ text {
   will-change: height;
 }
 
+.ui-transition-opacity {
+  transition: opacity 0.3s;
+  will-change: opacity;
+}
+
 .ui-transition-popup-center {
   position: absolute;
   top: 50%;
@@ -51,23 +61,35 @@ text {
   }
 }
 
-@each $dir in top, right, bottom, left {
+@mixin ui-transition-popup($dir) {
+  position: absolute;
+  opacity: 0;
+  #{$dir}: -10%;
+  margin: auto;
+  transition: opacity 0.3s,
+  #{$dir} 0.3s;
+  will-change: opacity,
+  #{$dir};
+
+  &.on {
+    opacity: 1;
+    #{$dir}: 0;
+  }
+}
+
+@each $dir in top, bottom {
   .ui-transition-popup-#{$dir} {
-    position: absolute;
-    opacity: 0;
-    #{$dir}: -10%;
+    @include ui-transition-popup($dir);
     right: 0;
     left: 0;
-    margin: auto;
-    transition: opacity 0.3s,
-    #{$dir} 0.3s;
-    will-change: opacity,
-    #{$dir};
+  }
+}
 
-    &.on {
-      opacity: 1;
-      #{$dir}: 0;
-    }
+@each $dir in right, left {
+  .ui-transition-popup-#{$dir} {
+    @include ui-transition-popup($dir);
+    top: 0;
+    bottom: 0;
   }
 }
 

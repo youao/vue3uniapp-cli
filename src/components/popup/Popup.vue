@@ -1,7 +1,8 @@
 <template>
   <view
     v-if="isBe"
-    class="size-full fixed top-0 left-0"
+    class="size-full fixed top-0 left-0 ui-transition-opacity"
+    :class="isShow ? 'opacity-100' : 'opacity-0'"
     :style="popStyle"
     @click="tapMask"
   >
@@ -36,7 +37,7 @@ const props = defineProps({
   }
 });
 
-const emits = defineEmits(["show", "hide"]);
+const emits = defineEmits(["show", "hide", "tap-mask"]);
 
 const positionMap = ["center", "top", "bottom", "left", "right"];
 
@@ -75,7 +76,7 @@ watch(
 );
 
 function tapMask() {
-  value.value = false;
+  emits("tap-mask");
 }
 
 function destroy() {
