@@ -1,11 +1,28 @@
 {
-  "Print to vue3": {
-    "prefix": "vue",
+  "Print to view": {
+    "prefix": "view",
     "body": [
       "<template>",
       "<view>",
       "$1",
       "</view>",
+      "</template>",
+      "<script setup>",
+      "import { ref } from 'vue'",
+      "$2",
+      "</script>"
+    ],
+    "description": "vue setup"
+  },
+  "Print to page": {
+    "prefix": "page",
+    "body": [
+      "<template>",
+      "<ui-page>",
+      "<view>",
+      "$1",
+      "</view>",
+      "</ui-page>",
       "</template>",
       "<script setup>",
       "import { ref } from 'vue'",
@@ -19,10 +36,5 @@
     "prefix": "tmp",
     "body": ["<template>", "$1", "</template>"],
     "description": "template"
-  },
-  "Print to ifdef": {
-    "prefix": "ifdef",
-    "body": ["// #ifdef", "$1", "// #endif"],
-    "description": "ifdef"
   }
 }

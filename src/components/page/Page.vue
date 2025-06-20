@@ -1,13 +1,15 @@
 <template>
   <view class="ui-page" :style="pageStyle">
-    <PageHeader
-      :titleAlign="titleAlign"
-      :isLaunch="isLaunch"
-      :hideLeft="hideLeft || isTabbar"
-      @tap-left="onTapLeft"
-    >
-      <slot name="title">{{ title }}</slot>
-    </PageHeader>
+    <Fixed :z-index="pageLayerZIndex.navigation">
+      <PageHeader
+        :titleAlign="titleAlign"
+        :isLaunch="isLaunch"
+        :hideLeft="hideLeft || isTabbar"
+        @tap-left="onTapLeft"
+      >
+        <slot name="title">{{ title }}</slot>
+      </PageHeader>
+    </Fixed>
     <slot></slot>
 
     <!-- toast -->
@@ -15,10 +17,11 @@
   </view>
 </template>
 <script setup>
-import { ref } from "vue";
+import { ref, provide } from "vue";
 import { TabbarPathList } from "@/config/app.js";
 // import { onLoad } from "@dcloudio/uni-app";
 import PageHeader from "./PageHeader.vue";
+import Fixed from "./Fixed.vue";
 import ToastQueue from "../popup/ToastQueue.vue";
 
 const props = defineProps({
@@ -46,21 +49,17 @@ if (safe.bottom) {
 // #ifdef MP-WEIXIN
 const menuRect = uni.getMenuButtonBoundingClientRect();
 // console.log(menuRect);
-// 87px
 pageStyle["--mp-menu-width"] = menuRect.width + "px";
-// 32px
 pageStyle["--mp-menu-height"] = menuRect.height + "px";
-// 4px
 const spaceTop = menuRect.top - safe.top;
 pageStyle["--mp-menu-top"] = spaceTop + "px";
-// 7px
 const spaceRight = windowInfo.windowWidth - menuRect.right;
 pageStyle["--mp-menu-right"] = spaceRight + "px";
 pageStyle["--ui-header-between"] = menuRect.width + spaceRight + "px";
 // #endif
 
 const pages = getCurrentPages();
-console.log(pages);
+// console.log(pages);
 const isLaunch = pages.length === 1;
 const currentPage = pages[pages.length - 1];
 const isTabbar = TabbarPathList.indexOf(currentPage.route) > -1;
@@ -68,11 +67,22 @@ const isTabbar = TabbarPathList.indexOf(currentPage.route) > -1;
 function onTapLeft() {
   if (isLaunch) {
     uni.reLaunch({
-      url: TabbarPathList[0]
+      url: "/" + TabbarPathList[0]
     });
   } else {
     uni.navigateBack();
   }
+}
+
+const pageLayerZIndex = {
+  popout: 999,
+  navigation: 699,
+  fixed: 399,
+  content: 99
+};
+
+function getPageLayerZIndex(layer) {
+  return ++pageLayerZIndex[layer];
 }
 
 const toastQueue = ref(null);
@@ -81,5 +91,10 @@ function toast(message) {
   return toastQueue.value?.openToast(message);
 }
 
-defineExpose({ toast });
+defineExpose({ toast, getPageLayerZIndex });
+provide("ui-page", {
+  currentPage,
+  pageLayerZIndex,
+  getPageLayerZIndex
+});
 </script>

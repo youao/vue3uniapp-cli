@@ -13,9 +13,6 @@
 </template>
 
 <script setup>
-// const app = getApp();
-// console.log(app.globalData.popupZIndex);
-
 // const res1 = uni.request({
 //   url: "https://cnodejs.org/api/v1/topics"
 // });

@@ -20,10 +20,10 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, inject } from "vue";
 import ToastBar from "./ToastBar.vue";
 
-const app = getApp();
+const page = inject("ui-page");
 
 const list = ref({});
 
@@ -54,7 +54,7 @@ function getToastBarStyle(h) {
   return {
     height: h + "px",
     opacity: h > 0 ? 1 : 0,
-    zIndex: h > 0 ? app.usePopupZIndex() : 0
+    zIndex: h > 0 ? page?.getPageLayerZIndex("popout") || 999 : 0
   };
 }
 

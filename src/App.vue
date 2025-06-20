@@ -1,8 +1,6 @@
 <script>
 export default {
-  globalData: {
-    popupZIndex: 999
-  },
+  globalData: {},
   onLaunch: function () {
     console.log("App Launch");
   },
@@ -11,11 +9,6 @@ export default {
   },
   onHide: function () {
     console.log("App Hide");
-  },
-  methods: {
-    usePopupZIndex() {
-      return ++this.globalData.popupZIndex;
-    }
   }
 };
 </script>

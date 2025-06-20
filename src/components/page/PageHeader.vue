@@ -1,5 +1,5 @@
 <template>
-  <view>
+  <view class="bg-white">
     <view class="ui-safe-top-bar"></view>
     <view
       class="flex text-md font-600"

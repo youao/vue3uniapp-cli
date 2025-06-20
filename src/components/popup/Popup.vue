@@ -13,9 +13,9 @@
 </template>
 
 <script setup>
-import { ref, computed, watch } from "vue";
+import { ref, computed, watch, inject } from "vue";
 
-const app = getApp();
+const page = inject("ui-page");
 
 const value = defineModel({
   type: Boolean,
@@ -46,7 +46,7 @@ const isShow = ref(false);
 const position = computed(() => {
   return positionMap.includes(props.position) ? props.position : "center";
 });
-const zIndex = ref(app.globalData.popupZIndex);
+const zIndex = ref(page?.pageLayerZIndex.popout || 999);
 const popStyle = computed(() => {
   return {
     backgroundColor: props.mask ? `rgba(0,0,0,${props.mask / 100})` : "",
@@ -62,7 +62,7 @@ watch(
   () => value.value,
   (val) => {
     if (val) {
-      zIndex.value = app.usePopupZIndex();
+      zIndex.value = page.getPageLayerZIndex('popout') || 999;
       isBe.value = true;
       setTimeout(() => {
         isShow.value = true;

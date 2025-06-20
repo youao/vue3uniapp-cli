@@ -1,8 +1,6 @@
-export const TabbarPathList = ["pages/index/index", "pages/demo/color"];
-
 export const TabbarList = [
   {
-    pagePath: "/pages/index/index",
+    pagePath: "pages/index/index",
     text: "首页"
   },
   {
@@ -10,3 +8,4 @@ export const TabbarList = [
     text: "主题"
   }
 ];
+export const TabbarPathList = TabbarList.map(item => item.pagePath);
