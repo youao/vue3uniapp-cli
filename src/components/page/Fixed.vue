@@ -1,6 +1,6 @@
 <template>
   <view :style="'height:' + blankHeight">
-    <view class="fixed-ref" :style="fixedStyle">
+    <view :id="useId" :style="fixedStyle">
       <slot></slot>
     </view>
   </view>
@@ -8,7 +8,10 @@
 <script setup>
 import { ref, computed, onMounted, getCurrentInstance } from "vue";
 
+const randomNum = new Date().getTime() + "" + Math.floor(Math.random() * 1000);
+
 const props = defineProps({
+  fixedId: String,
   fixed: {
     type: Boolean,
     default: true
@@ -29,7 +32,13 @@ const props = defineProps({
 });
 
 const emits = defineEmits(["load"]);
+
 const instance = getCurrentInstance();
+
+const useId = computed(() => {
+  return (props.fixedId || "fixed") + "-" + randomNum;
+});
+
 const fixedStyle = computed(() => {
   return {
     position: props.fixed ? "fixed" : "relative",
@@ -48,7 +57,7 @@ const blankHeight = computed(() => {
 
 onMounted(() => {
   if (props.blank == "auto") {
-    setTimeout(setContentHeight, 50);
+    setTimeout(setContentHeight, 300);
   }
 });
 
@@ -56,9 +65,9 @@ function setContentHeight() {
   uni
     .createSelectorQuery()
     .in(instance)
-    .select(".fixed-ref")
+    .select("#" + useId.value)
     .boundingClientRect((data) => {
-        console.log(data)
+      //   console.log("setContentHeight", data);
       if (data?.height) {
         fixedHeight.value = data.height;
         emits("load", data);

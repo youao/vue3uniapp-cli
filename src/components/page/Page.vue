@@ -1,6 +1,7 @@
 <template>
   <view class="ui-page" :style="pageStyle">
-    <Fixed :z-index="pageLayerZIndex.navigation">
+    <!-- header -->
+    <Fixed fixed-id="header" :z-index="pageLayerZIndex.navigation">
       <PageHeader
         :titleAlign="titleAlign"
         :isLaunch="isLaunch"
@@ -10,8 +11,21 @@
         <slot name="title">{{ title }}</slot>
       </PageHeader>
     </Fixed>
+    <!-- content -->
     <slot></slot>
-
+    <!-- tabbar -->
+    <Fixed
+      v-if="isTabbar && TabbarConfig?.list"
+      fixed-id="tabbar"
+      type="bottom"
+      :z-index="pageLayerZIndex.navigation"
+    >
+      <Tabbar
+        :config="TabbarConfig"
+        :path="currentPagePath"
+        @tap-item="onTapTabbarItem"
+      />
+    </Fixed>
     <!-- toast -->
     <ToastQueue ref="toastQueue" />
   </view>
@@ -22,6 +36,8 @@ import { TabbarPathList } from "@/config/app.js";
 // import { onLoad } from "@dcloudio/uni-app";
 import PageHeader from "./PageHeader.vue";
 import Fixed from "./Fixed.vue";
+import { TabbarConfig } from "@/config/app.js";
+import Tabbar from "./Tabbar.vue";
 import ToastQueue from "../popup/ToastQueue.vue";
 
 const props = defineProps({
@@ -62,11 +78,15 @@ const pages = getCurrentPages();
 // console.log(pages);
 const isLaunch = pages.length === 1;
 const currentPage = pages[pages.length - 1];
+const currentPagePath = currentPage.route;
 const isTabbar = TabbarPathList.indexOf(currentPage.route) > -1;
+if (isTabbar) {
+  uni.hideTabBar();
+}
 
 function onTapLeft() {
   if (isLaunch) {
-    uni.reLaunch({
+    uni.switchTab({
       url: "/" + TabbarPathList[0]
     });
   } else {
@@ -83,6 +103,10 @@ const pageLayerZIndex = {
 
 function getPageLayerZIndex(layer) {
   return ++pageLayerZIndex[layer];
+}
+
+function onTapTabbarItem(item) {
+  uni.switchTab({ url: "/" + item.pagePath });
 }
 
 const toastQueue = ref(null);

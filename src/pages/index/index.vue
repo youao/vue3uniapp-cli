@@ -3,11 +3,10 @@
     <template #title>
       <view class="size-full bg-gray"></view>
     </template>
-    <view class="p-5">
+    <view class="p-5 text-primary">
       <navigator url="/pages/demo/toast">toast</navigator>
       <navigator url="/pages/demo/dialog">dialog</navigator>
       <navigator url="/pages/demo/button">button</navigator>
-
     </view>
   </ui-page>
 </template>
@@ -26,7 +25,4 @@
 </script>
 
 <style scoped>
-.hover:active {
-  background-color: red;
-}
 </style>

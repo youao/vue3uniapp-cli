@@ -1,6 +1,6 @@
 {
-  "Print to view": {
-    "prefix": "view",
+  "Print to vue": {
+    "prefix": "vue",
     "body": [
       "<template>",
       "<view>",
@@ -30,7 +30,7 @@
       "$2",
       "</script>"
     ],
-    "description": "vue setup"
+    "description": "ui-page"
   },
   "Print to tmp": {
     "prefix": "tmp",
