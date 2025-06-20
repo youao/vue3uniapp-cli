@@ -9,6 +9,10 @@
   >
     <view class="bg-overlay text-md flex flex-col" :style="useWrapStyles">
       <slot name="header">
+        <view
+          v-if="['top', 'right', 'left'].includes(position)"
+          class="ui-safe-top-bar"
+        ></view>
         <view v-if="!hideHeader" class="relative pt-8 px-6 pb-4">
           <slot name="title">
             <view
@@ -37,7 +41,7 @@
         </slot>
       </view>
       <slot name="footer">
-        <view v-if="!hideFooter" class="flex p-4">
+        <view v-if="!hideFooter" class="flex px-4 pt-4 p-safe-bottom">
           <button
             v-if="!hideCancel"
             class="flex-1 ui-button circle mr-4"
