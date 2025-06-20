@@ -12,14 +12,82 @@ text {
   display: inline-block;
 }
 
+@mixin flex-mix($align: flex-start, $justify: flex-start, $direction: row, $display: flex) {
+  display: $display;
+  align-items: $align;
+  justify-content: $justify;
+  flex-direction: $direction;
+}
+
 .ui-page {
-  font-size: 14px;
+  font-size: 28rpx;
   color: var(--ui-text-base);
+  --ui-safe-top-blank: 40rpx;
+  --ui-safe-bottom-blank: 32rpx;
+}
+
+.ui-safe-top-bar {
+  height: var(--ui-safe-area-top);
+}
+
+.ui-safe-bottom-bar {
+  height: var(--ui-safe-area-bottom);
+}
+
+.p-safe-top {
+  padding-top: var(--ui-safe-area-top, var(--ui-safe-top-blank));
+}
+
+.p-safe-bottom {
+  padding-bottom: var(--ui-safe-area-bottom, var(--ui-safe-bottom-blank));
+}
+
+.ui-header-contrainer {
+  height: 88rpx;
+  position: relative;
+  padding: var(--mp-menu-top, 12rpx) var(--ui-header-between, 78rpx) 0;
+  box-sizing: border-box;
+}
+
+.ui-header-contrainer-fill {
+  height: 88rpx;
+  padding: var(--mp-menu-top, 12rpx) var(--ui-header-between, 0) 0 0;
+  box-sizing: border-box;
+}
+
+.ui-header-title {
+  height: var(--mp-menu-height, 64rpx);
+  padding: 0 var(--mp-menu-right, 14rpx);
+}
+
+.ui-header-left {
+  position: absolute;
+  top: var(--mp-menu-top, 12rpx);
+  left: var(--mp-menu-right, 14rpx);
+}
+
+.ui-mp-menu-light {
+  --ui-menu-size: var(--mp-menu-height, 64rpx);
+  width: var(--ui-menu-size);
+  height: var(--ui-menu-size);
+  @include flex-mix(center, center);
+  font-size: 36rpx;
+  color: #000;
+  background-color: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(151, 151, 151, 0.2);
+  border-radius: 50%;
+  box-sizing: border-box;
 }
 
 .uni-hover {
-  position: relative;
+  background-color: rgba(0, 0, 0, 0.1);
 
+  &.light {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+.uni-hover-overlay {
   &::before {
     content: '';
     position: absolute;
@@ -33,7 +101,6 @@ text {
   &.light::before {
     background-color: rgba(255, 255, 255, 0.1);
   }
-
 }
 
 .ui-transition-height {
@@ -106,9 +173,7 @@ text {
   --ui-button-border-radius: var(--ui-rounded);
   font-size: 16px;
   height: var(--ui-button-height);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include flex-mix(center, center);
   line-height: 1;
   border-radius: var(--ui-button-border-radius);
   box-sizing: border-box;

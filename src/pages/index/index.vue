@@ -1,7 +1,9 @@
 <template>
-  <ui-page>
+  <ui-page titleAlign="left">
+    <template #title>
+      <view class="size-full bg-gray"></view>
+    </template>
     <view class="p-5">
-      <navigator url="/pages/demo/color">color</navigator>
       <navigator url="/pages/demo/toast">toast</navigator>
       <navigator url="/pages/demo/dialog">dialog</navigator>
       <navigator url="/pages/demo/button">button</navigator>

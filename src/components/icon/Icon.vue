@@ -11,6 +11,7 @@
   <text v-else-if="name == 'close'" class="i-ep:close"></text>
   <text v-else-if="name == 'left'" class="i-ep:arrow-left"></text>
   <text v-else-if="name == 'right'" class="i-ep:arrow-right"></text>
+  <text v-else-if="name == 'home'" class="i-weui:home-outlined"></text>
 </template>
 
 <script setup>
