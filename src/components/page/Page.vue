@@ -1,7 +1,11 @@
 <template>
   <view class="ui-page" :style="pageStyle">
     <!-- header -->
-    <Fixed fixed-id="header" :z-index="pageLayerZIndex.navigation">
+    <Fixed
+      fixed-id="header"
+      :blank="headerHeight"
+      :z-index="pageLayerZIndex.navigation"
+    >
       <PageHeader
         :titleAlign="titleAlign"
         :isLaunch="isLaunch"
@@ -32,11 +36,11 @@
 </template>
 <script setup>
 import { ref, provide } from "vue";
-import { TabbarPathList } from "@/config/app.js";
+import { TabbarPathList, TabbarConfig } from "@/config/app.js";
+import { rpxToPx } from "@/utils/index.js";
 // import { onLoad } from "@dcloudio/uni-app";
 import PageHeader from "./PageHeader.vue";
 import Fixed from "./Fixed.vue";
-import { TabbarConfig } from "@/config/app.js";
 import Tabbar from "./Tabbar.vue";
 import ToastQueue from "../popup/ToastQueue.vue";
 
@@ -73,6 +77,8 @@ const spaceRight = windowInfo.windowWidth - menuRect.right;
 pageStyle["--mp-menu-right"] = spaceRight + "px";
 pageStyle["--ui-header-between"] = menuRect.width + spaceRight + "px";
 // #endif
+const headerHeight = rpxToPx(88) + safe.top + "px";
+pageStyle["--ui-header-height"] = headerHeight;
 
 const pages = getCurrentPages();
 // console.log(pages);
