@@ -50,7 +50,7 @@ function toastLoading() {
     duration: 0,
     icon: "loading",
     onClose() {
-      console.log("toastLoading onClose")
+      console.log("toastLoading onClose");
     }
   });
 }

@@ -30,7 +30,7 @@ function onTouchStart(event) {
   var rect = instance.getBoundingClientRect();
   isReachTop = Math.floor(rect.top) <= top;
   isReachBottom = Math.floor(rect.bottom) <= bottom;
-  
+
   var touch = event.touches[0] || event.changedTouches[0];
   startY = touch.clientY;
 }
@@ -56,11 +56,11 @@ function onTouchEnd(event) {
 }
 //#ifdef MP-WEIXIN
 module.exports = {
-  touchevent: touchHandler
+  touchHandler: touchHandler
 };
 //#endif
 //#ifndef MP-WEIXIN
 export default {
-  touchevent: touchHandler
+  touchHandler: touchHandler
 };
 //#endif

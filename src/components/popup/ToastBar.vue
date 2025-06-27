@@ -33,7 +33,14 @@ const typeClassMap = {
   danger: "bg-danger-light-9 text-danger border-1 border-danger-light-5"
 };
 
-const iconClassMap = ["success", "warning", "error", "danger", "info", "loading"];
+const iconClassMap = [
+  "success",
+  "warning",
+  "error",
+  "danger",
+  "info",
+  "loading"
+];
 
 const barClass = computed(() => {
   return typeClassMap[props.type] || typeClassMap.dark;

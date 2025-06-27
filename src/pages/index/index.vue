@@ -24,5 +24,4 @@
 // console.log(res1, res2);
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

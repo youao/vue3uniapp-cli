@@ -62,7 +62,7 @@ watch(
   () => value.value,
   (val) => {
     if (val) {
-      zIndex.value = page.getPageLayerZIndex('popout') || 999;
+      zIndex.value = page.getPageLayerZIndex("popout") || 999;
       isBe.value = true;
       setTimeout(() => {
         isShow.value = true;

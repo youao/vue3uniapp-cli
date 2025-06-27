@@ -2,11 +2,11 @@
   <view
     :data-top="top"
     :data-bottom="bottom"
-    @touchstart="bounce.touchevent"
-    @touchmove="bounce.touchevent"
-    @touchend="bounce.touchevent"
-    @touchcancel="bounce.touchevent"
-    :style="{minHeight}"
+    @touchstart="bounce.touchHandler"
+    @touchmove="bounce.touchHandler"
+    @touchend="bounce.touchHandler"
+    @touchcancel="bounce.touchHandler"
+    :style="{ minHeight }"
   >
     <slot></slot>
   </view>
@@ -31,8 +31,8 @@ export default {
 import touchs from "@/renders/touch-bounce.js";
 export default {
   methods: {
-    touchevent(e, i) {
-      touchs.touchevent(e, i);
+    touchHandler(e) {
+      touchs.touchHandler(e);
     }
   }
 };

@@ -7,7 +7,7 @@ var isReachBottom = false;
 function touchHandler(event, parent) {
   // console.log(parent.getComputedStyle()['height'])
   // console.log(parent.getBoundingClientRect())
-  
+
   switch (event.type) {
     case "touchstart":
       onTouchStart(event, parent);
