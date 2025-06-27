@@ -1,6 +1,6 @@
 <template>
   <ui-page title="主题">
-    <view class="px-3 text-white mb-5">
+    <view class="py-1px px-3 text-white mb-5">
       <view v-for="(item, key) in uiColors" :key="key">
         <view
           class="h-20 mt-6"

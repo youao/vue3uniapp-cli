@@ -37,7 +37,7 @@ const tabbarContainerStyle = computed(() => {
 const tabbarStyle = computed(() => {
   const { height } = props.config;
   return {
-    height
+    height: height + "px"
   };
 });
 

@@ -5,7 +5,7 @@ export const TabbarConfig = {
   fontSize: "12px",
   iconWidth: "28px",
   spacing: "2px",
-  height: "64px",
+  height: 64,
   list: [
     {
       pagePath: "pages/index/index",
